@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'admin_page.dart';
 import 'map_page.dart';
 import '../services/auth_service.dart';
-import '../main.dart';  // Para usar startLocationService
+import '../main.dart'; // Para usar startLocationService
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -46,8 +46,28 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     if (rol == null) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
+      // Pantalla de carga estilizada
+      return Scaffold(
+        backgroundColor: Colors.blueAccent,
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+              SizedBox(height: 16),
+              Text(
+                "Cargando tu perfil...",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              )
+            ],
+          ),
+        ),
       );
     }
 

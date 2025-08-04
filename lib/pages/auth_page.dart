@@ -48,43 +48,123 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeColor = Colors.blueAccent;
+
     return Scaffold(
-      appBar: AppBar(title: Text(isLogin ? "Login" : "Registro")),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            if (!isLogin)
-              TextField(
-                controller: _nombreController,
-                decoration: const InputDecoration(labelText: "Nombre"),
+      backgroundColor: Colors.grey[100],
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            elevation: 8,
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    isLogin ? Icons.login : Icons.person_add,
+                    color: themeColor,
+                    size: 80,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    isLogin ? "Bienvenido" : "Crear Cuenta",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: themeColor,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  if (!isLogin)
+                    TextField(
+                      controller: _nombreController,
+                      decoration: InputDecoration(
+                        labelText: "Nombre",
+                        prefixIcon: const Icon(Icons.person),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                  if (!isLogin) const SizedBox(height: 16),
+
+                  TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      labelText: "Email",
+                      prefixIcon: const Icon(Icons.email),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  TextField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: "Contraseña",
+                      prefixIcon: const Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        backgroundColor: themeColor,
+                      ),
+                      onPressed: _handleAuth,
+                      child: Text(
+                        isLogin ? "Iniciar Sesión" : "Registrarse",
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  TextButton(
+                    onPressed: () => setState(() => isLogin = !isLogin),
+                    child: Text(
+                      isLogin
+                          ? "¿No tienes cuenta? Regístrate"
+                          : "¿Ya tienes cuenta? Inicia sesión",
+                      style: TextStyle(color: themeColor),
+                    ),
+                  ),
+
+                  if (mensaje.isNotEmpty) ...[
+                    const SizedBox(height: 12),
+                    Text(
+                      mensaje,
+                      style: const TextStyle(color: Colors.red),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ],
               ),
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(labelText: "Email"),
             ),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(labelText: "Contraseña"),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _handleAuth,
-              child: Text(isLogin ? "Iniciar Sesión" : "Registrarse"),
-            ),
-            TextButton(
-              onPressed: () => setState(() => isLogin = !isLogin),
-              child: Text(isLogin
-                  ? "¿No tienes cuenta? Regístrate"
-                  : "¿Ya tienes cuenta? Inicia sesión"),
-            ),
-            const SizedBox(height: 20),
-            Text(mensaje),
-          ],
+          ),
         ),
       ),
     );
   }
 }
+
 

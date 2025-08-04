@@ -56,24 +56,32 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mapa de Topografía"),
+        title: const Text("📍 Mapa de Topografía"),
+        centerTitle: true,
+        backgroundColor: Colors.blue.shade700,
+        elevation: 4,
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.logout, color: Colors.white),
+            tooltip: "Cerrar sesión",
             onPressed: () => _logout(context),
           ),
         ],
       ),
       drawer: Drawer(
-        child: ListView(
+        child: Column(
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text("Menú Topógrafo",
-                  style: TextStyle(color: Colors.white, fontSize: 18)),
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue.shade700),
+              accountName: const Text("Topógrafo"),
+              accountEmail: Text(supabase.auth.currentUser?.email ?? ""),
+              currentAccountPicture: const CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(Icons.person, size: 40, color: Colors.blue),
+              ),
             ),
             ListTile(
-              leading: const Icon(Icons.add_location_alt),
+              leading: const Icon(Icons.add_location_alt, color: Colors.green),
               title: const Text("Registrar Terreno"),
               onTap: () {
                 Navigator.push(
@@ -83,7 +91,7 @@ class _MapPageState extends State<MapPage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.map),
+              leading: const Icon(Icons.map, color: Colors.blueAccent),
               title: const Text("Ver Terrenos"),
               onTap: () {
                 Navigator.push(
@@ -92,11 +100,27 @@ class _MapPageState extends State<MapPage> {
                 );
               },
             ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.red),
+              title: const Text("Cerrar Sesión"),
+              onTap: () => _logout(context),
+            ),
           ],
         ),
       ),
       body: myPosition == null
-          ? const Center(child: Text("📍 Obteniendo ubicación..."))
+          ? const Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 12),
+                  Text("📍 Obteniendo ubicación...",
+                      style: TextStyle(fontSize: 16)),
+                ],
+              ),
+            )
           : FlutterMap(
               options: MapOptions(
                 initialCenter: myPosition!,
@@ -114,15 +138,17 @@ class _MapPageState extends State<MapPage> {
                       width: 80,
                       height: 80,
                       child: const Icon(Icons.location_on,
-                          color: Colors.blue, size: 40),
+                          color: Colors.blue, size: 42),
                     ),
                   ],
                 ),
               ],
             ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.blue.shade700,
+        icon: const Icon(Icons.my_location, color: Colors.white),
+        label: const Text("Mi ubicación"),
         onPressed: _getCurrentLocation,
-        child: const Icon(Icons.my_location),
       ),
     );
   }

@@ -23,13 +23,13 @@ Future<void> startLocationService() async {
     ),
     androidSettings: const AndroidSettings(
       accuracy: LocationAccuracy.NAVIGATION,
-      interval: 10,
+      interval: 10, // cada 10 segundos
       distanceFilter: 0,
       androidNotificationSettings: AndroidNotificationSettings(
         notificationChannelName: 'Topografía Tracker',
-        notificationTitle: 'Rastreo activo',
-        notificationMsg: 'Enviando ubicación en tiempo real',
-        notificationIcon: '',
+        notificationTitle: '📡 Rastreo activo',
+        notificationMsg: 'Enviando ubicación en tiempo real...',
+        notificationIcon: '', // aquí puedes poner tu ícono personalizado
       ),
     ),
   );
@@ -57,8 +57,48 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Topografía App',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.grey[100],
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.blue.shade700,
+          foregroundColor: Colors.white,
+          elevation: 3,
+          titleTextStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue.shade700,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+            textStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
+      darkTheme: ThemeData.dark().copyWith(
+        primaryColor: Colors.blue.shade300,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue.shade300,
+            foregroundColor: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
+      ),
+      themeMode: ThemeMode.system, // ✅ Cambia automáticamente claro/oscuro
       home: session == null ? const AuthPage() : const HomePage(),
     );
   }
 }
+

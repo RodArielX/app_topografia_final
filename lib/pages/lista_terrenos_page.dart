@@ -17,7 +17,12 @@ class _ListaTerrenosPageState extends State<ListaTerrenosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Terrenos Guardados")),
+      appBar: AppBar(
+        title: const Text("🌍 Terrenos Guardados"),
+        centerTitle: true,
+        backgroundColor: Colors.green.shade700,
+        elevation: 4,
+      ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: supabase.from('terrenos').select(),
         builder: (context, snapshot) {
@@ -26,10 +31,16 @@ class _ListaTerrenosPageState extends State<ListaTerrenosPage> {
           }
           final terrenos = snapshot.data!;
           if (terrenos.isEmpty) {
-            return const Center(child: Text("No hay terrenos registrados"));
+            return const Center(
+              child: Text(
+                "📭 No hay terrenos registrados",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+            );
           }
 
           return ListView.builder(
+            padding: const EdgeInsets.all(10),
             itemCount: terrenos.length,
             itemBuilder: (context, index) {
               final terreno = terrenos[index];
@@ -38,12 +49,25 @@ class _ListaTerrenosPageState extends State<ListaTerrenosPage> {
                   .toList();
 
               return Card(
+                elevation: 5,
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: ListTile(
-                  leading: const Icon(Icons.landscape, color: Colors.green),
-                  title: Text(terreno['nombre']),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.green.shade600,
+                    child: const Icon(Icons.landscape, color: Colors.white),
+                  ),
+                  title: Text(
+                    terreno['nombre'],
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   subtitle: Text(
-                      "Área: ${terreno['area'].toStringAsFixed(2)} m²\n"
-                      "Toca para ver detalles"),
+                    "Área: ${terreno['area'].toStringAsFixed(2)} m²",
+                    style: const TextStyle(fontSize: 14),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 18),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -84,7 +108,11 @@ class TerrenoDetallePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(nombre)),
+      appBar: AppBar(
+        title: Text(nombre),
+        backgroundColor: Colors.green.shade700,
+        centerTitle: true,
+      ),
       body: FlutterMap(
         options: MapOptions(
           initialCenter: puntos.first,
@@ -100,7 +128,7 @@ class TerrenoDetallePage extends StatelessWidget {
               Polygon(
                 points: puntos,
                 color: Colors.green.withOpacity(0.3),
-                borderColor: Colors.green,
+                borderColor: Colors.green.shade900,
                 borderStrokeWidth: 3,
               ),
             ],
@@ -110,36 +138,46 @@ class TerrenoDetallePage extends StatelessWidget {
                 .map(
                   (p) => Marker(
                     point: p,
-                    width: 50,
-                    height: 50,
+                    width: 40,
+                    height: 40,
                     child: const Icon(Icons.location_on,
-                        color: Colors.blue, size: 30),
+                        color: Colors.blueAccent, size: 32),
                   ),
                 )
                 .toList(),
           ),
         ],
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(12.0),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 6)],
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Área total: ${area.toStringAsFixed(2)} m²",
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              "📏 Área total: ${area.toStringAsFixed(2)} m²",
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black87),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
             if (explicacion != null && explicacion!.isNotEmpty)
               ExpansionTile(
-                title: const Text("📘 Ver cómo se calculó el área"),
+                title: const Text(
+                  "📘 Ver explicación del cálculo",
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
                 children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       explicacion!,
-                      style: const TextStyle(fontSize: 13),
+                      style: const TextStyle(fontSize: 14, color: Colors.black87),
                     ),
                   ),
                 ],
@@ -150,4 +188,5 @@ class TerrenoDetallePage extends StatelessWidget {
     );
   }
 }
+
 
