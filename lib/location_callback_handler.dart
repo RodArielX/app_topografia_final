@@ -1,25 +1,19 @@
-import 'package:background_locator_2/location_dto.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-void callback(LocationDto locationDto) async {
+Future<void> updateLocation(Position position) async {
   final supabase = Supabase.instance.client;
   final user = supabase.auth.currentUser;
 
   if (user != null) {
-    await supabase.from('usuarios').update({
-      'lat': locationDto.latitude,
-      'lng': locationDto.longitude,
-      'last_update': DateTime.now().toIso8601String(),
-    }).eq('id', user.id);
+    try {
+      await supabase.from('usuarios').update({
+        'lat': position.latitude,
+        'lng': position.longitude,
+        'last_update': DateTime.now().toIso8601String(),
+      }).eq('id', user.id);
+    } catch (e) {
+      print("❌ Error al enviar ubicación: $e");
+    }
   }
-
-  print("Ubicación enviada: ${locationDto.latitude}, ${locationDto.longitude}");
-}
-
-void initCallback(Map<dynamic, dynamic> params) {
-  print("BackgroundLocator inicializado");
-}
-
-void disposeCallback() {
-  print("BackgroundLocator finalizado");
 }

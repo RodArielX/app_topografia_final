@@ -3,7 +3,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'admin_page.dart';
 import 'map_page.dart';
 import '../services/auth_service.dart';
-import '../main.dart'; // Para usar startLocationService
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,12 +19,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _loadUserRole();
-
-    // Inicia servicio de localización en background cuando el usuario está logueado
-    final user = Supabase.instance.client.auth.currentUser;
-    if (user != null) {
-      startLocationService();
-    }
+    // 🔹 Ya no llamamos a startLocationService(), 
+    // porque WorkManager ya quedó configurado en main.dart
   }
 
   Future<void> _loadUserRole() async {
