@@ -5,6 +5,13 @@ El sistema incluye autenticación de usuarios, manejo de roles (administrador/to
 
 ---
 
+## Apk dentro del link
+
+https://epnecuador-my.sharepoint.com/:u:/g/personal/ariel_ashqui_epn_edu_ec/ESYt4Wfq-O5Cv8b63FLx3h8BGGV9vL2FubEyU2LsDT_3MA?e=VCp10I
+ 
+
+---
+
 ## 🚀 Tecnologías utilizadas
 
 - **Flutter**
