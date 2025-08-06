@@ -5,6 +5,15 @@ El sistema incluye autenticación de usuarios, manejo de roles (administrador/to
 
 ---
 
+## 👨‍💻 Integrantes
+
+**Ariel Ashqui** - **Evelyn Guachamin** - **Jonathan Ramirez**
+
+Estudiantes de Tecnología Superior en Desarrollo de Software  
+Escuela Politécnica Nacional
+
+---
+
 - ## Apk dentro del link
 
 https://epnecuador-my.sharepoint.com/:u:/g/personal/ariel_ashqui_epn_edu_ec/ESYt4Wfq-O5Cv8b63FLx3h8BGGV9vL2FubEyU2LsDT_3MA?e=VCp10I
@@ -17,13 +26,19 @@ https://epnecuador-my.sharepoint.com/:u:/g/personal/ariel_ashqui_epn_edu_ec/ESYt
 
 ---
 
+- ## Link de la tienda con la aplicacion
+
+https://www.amazon.com/dp/B0FLD3NBQ4/ref=mp_s_a_1_1?crid=3PFGTKRKYP5VX&dib=eyJ2IjoiMSJ9.HLa6eB3e4XVqasuamU6mWvSSLitPMfLfq-bO2IUvqal9vH_Zponw7eBO0B4QBfUqXDSpuEbSN4ITZVRoEI9X40rbQTGpNBcTQMinxnpYtrClABFkSPKO6YgoT9ewCWBI5LSlVNYAi9JikQnKpINbJMsKP_DW2utBHyAzUBE0SDLqkANwbs6-6hqgfRNxT83ZARRKfNAKrSaq0DW_MSa2jw.1QRnxIQriqtqdkdE8ht_9g8gaWGeNhxysC_Ctis2m2Y&dib_tag=se&keywords=GeoMap&qid=1754493290&sprefix=geomap%2Caps%2C183&sr=8-1
+
 - ## Aplicacion firmada y publicada en la tienda de Amazon
 
 <img width="1709" height="472" alt="image" src="https://github.com/user-attachments/assets/a8263f44-ef26-40bb-a5ce-2c785348e394" />
 
-<img width="1132" height="658" alt="image" src="https://github.com/user-attachments/assets/392b4d28-f1d3-4bcc-adde-35be9eaeece9" />
+<img width="366" height="674" alt="image" src="https://github.com/user-attachments/assets/c878228d-964a-4547-bff1-0fe68d1a3e38" />  <img width="464" height="620" alt="image" src="https://github.com/user-attachments/assets/3811ff4a-9057-4204-a6a5-912a17274635" />
 
-<img width="1356" height="243" alt="image" src="https://github.com/user-attachments/assets/f755b578-fc56-4e83-9ae6-22befef34d1c" />
+<img width="296" height="611" alt="image" src="https://github.com/user-attachments/assets/83901bf3-8b67-4f11-9aaa-91c47473075b" />
+
+<img width="1623" height="345" alt="image" src="https://github.com/user-attachments/assets/b7dc91f7-a73b-463a-bfba-4f48f6ffaaab" />
 
 ---
 
@@ -130,16 +145,3 @@ https://epnecuador-my.sharepoint.com/:u:/g/personal/ariel_ashqui_epn_edu_ec/ESYt
 <img width="1917" height="1041" alt="image" src="https://github.com/user-attachments/assets/f700e410-80b0-43d7-b9a5-5a73047a31d1" />
 
 <img width="1919" height="973" alt="image" src="https://github.com/user-attachments/assets/9150dadf-ea36-4a60-86ea-29b9aea72b7a" />
-
----
-
-## 👨‍💻 Integrantes
-
-**Ariel Ashqui** - **Evelyn Guachamin** - **Jonathan Ramirez**
-
-Estudiantes de Tecnología Superior en Desarrollo de Software  
-Escuela Politécnica Nacional
-
-
-
-
